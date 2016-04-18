@@ -39,5 +39,20 @@ if (other != this) {
     strokeWeight(0.5);
     line(this.position.x, this.position.y,
     other.position.x, other.position.y);
-  } } } };
-  
+      }
+    }
+  }
+};
+
+  Particle.prototype.applyForce = function (f)
+  {
+    this.acceleration.add(f);
+  };
+
+  Particle.prototype.display = function () {
+    noStroke();
+    fill(255, 200);
+    elipse(this.position.x, this.position.y, 4, 4);
+    var mPos = createVector(mouseX, mouseY);
+    var dir = p5.Vector.sub(this.position, mPos);
+  }
