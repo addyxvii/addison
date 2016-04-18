@@ -1,3 +1,20 @@
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  for (var i = 0; i < 170; i++) {
+    particles.push(new Particle(createVector(random(width), random(height))))
+  }
+}
+function draw(){
+  clear();
+  background(0,0);
+  var p;
+  for (var i = particles.length 1; i >= 0; i--){
+    p = particles[i];
+    p.run();
+  }
+}
+
+var particles = [];
 var Particle = function (position){
   this.acceleration = createVector(0, 0.05);
   this.velocity = createVector(random(-0.5, 0.5), random(-0.5, 0.5));
@@ -55,4 +72,9 @@ if (other != this) {
     elipse(this.position.x, this.position.y, 4, 4);
     var mPos = createVector(mouseX, mouseY);
     var dir = p5.Vector.sub(this.position, mPos);
-  }
+    if(dir.mag() < 160) {
+      stroke(255, 70);
+      strokeWeight(0.5);
+      line(this.position.x, this.position.y, mouseX, mouseY);
+    }
+  };
