@@ -26,5 +26,18 @@ Particle.prototype.update = function (){
 Particle.prototype.intersects = function ()
 {
   for (var i=0; i < particles.length; i++)
-}
+{
 var other = particles[i];
+if (other != this) {
+  var dir = p5.Vector.sub(this.position,
+  other.position);
+  if(dir.mag() < 12){
+    dir.setMag(0.1);
+    this.applyForce(dir);
+  if(dir.mag() < 100) {
+    stroke(255, 50);
+    strokeWeight(0.5);
+    line(this.position.x, this.position.y,
+    other.position.x, other.position.y);
+  } } } };
+  
